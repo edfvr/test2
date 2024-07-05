@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function PopularTags(): JSX.Element {
   const tags = ['React', 'JavaScript', 'TypeScript', 'Node.js', 'CSS', 'HTML']; // 
 

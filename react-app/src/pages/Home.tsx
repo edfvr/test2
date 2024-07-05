@@ -1,25 +1,34 @@
-// src/App.tsx
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Post from './components/Post';
-import PopularTags from './components/PopularTags'
-import SignInPage from './components/SignInForm';
+import Banner from '../components/Banner';
+import Post from '../components/Post'
+import PopularTags from '../components/PopularTags';
 
-export default function App(): JSX.Element {
-  
-  return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route path="/" exact>
+export default function(): JSX.Element {
+    return (
+        <div>
+            <Banner />
+
             <div className="container page">
               <div className="row">
                 <div className="col-md-9">
                   <div className="feed-toggle">
-                    <section className="global-feed">
-                      <h2>Global Feed</h2>
+                    <ul className='nav nav-pills outline-active'>
+                      <li className="nav-item" style={{ display: 'none' }}>
+                        <a href="#" className="nav-link">
+                          Your Feed
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a href="#" className="nav-link active">
+                          Global Feed
+                        </a>
+                      </li>
+                      <li className="nav-item" style={{ display: 'none' }}>
+                        <a href="#" className="nav-link active">
+                          <i className="ion-pound"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <section className="global-feed ng-isolate-scope">
                       <Post
                         name="John Doe"
                         profilePic="https://randomuser.me/api/portraits/men/1.jpg"
@@ -44,18 +53,6 @@ export default function App(): JSX.Element {
                 </div>
               </div>
             </div>
-          </Route>
-          <Route path="/signin">
-            <div className="container page">
-              <div className="row">
-                <div className="col-md-6 offset-md-3">
-                  <SignInPage />
-                </div>
-              </div>
-            </div>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+        </div>
+    );
 };
