@@ -1,16 +1,44 @@
-export default function PopularTags(): JSX.Element {
-  const tags = ['React', 'JavaScript', 'TypeScript', 'Node.js', 'CSS', 'HTML']; // 
+import React, { useState, useEffect } from 'react';
+import api from '../services/api';
+
+interface PopularTagsProps {
+  onTagSelect: (tag: string) => void;
+}
+
+export default function PopularTags({ onTagSelect }: PopularTagsProps): JSX.Element {
+  const [tags, setTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetchTags();
+  }, []);
+
+  const fetchTags = async () => {
+    try {
+      const response = await api.get<{ tags: string[] }>('/tags');
+      setTags(response.data.tags);
+    } catch (error) {
+      console.error('Error fetching tags:', error);
+    }
+  };
 
   return (
-    <div className="popular-tags">
-      <h2>Popular Tags</h2>
+    <div className="sidebar">
+      <p>Popular Tags</p>
       <div className="tag-list">
-        {tags.map((tag, index) => (
-          <span key={index} className="tag">
+        {tags.map(tag => (
+          <a
+            key={tag}
+            href=""
+            className="tag-pill tag-default"
+            onClick={(e) => {
+              e.preventDefault();
+              onTagSelect(tag);
+            }}
+          >
             {tag}
-          </span>
+          </a>
         ))}
       </div>
     </div>
   );
-};
+}

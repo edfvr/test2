@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Navbar(): JSX.Element {
   const activeLink = (href: string) => {
     const currentPath = window.location.pathname;

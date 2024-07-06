@@ -1,4 +1,4 @@
-import React from 'react';
+import '../App.css'
 
 export default function Banner(): JSX.Element{
     return (
